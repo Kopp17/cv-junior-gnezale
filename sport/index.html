@@ -4,87 +4,143 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="../favicon.png">
 <title>Kora Fit — Salle de sport à Abidjan</title>
-<meta name="description" content="Démo : salle de sport à Abidjan, planning des cours, calculateur IMC et inscription par WhatsApp.">
+<meta name="description" content="Démo : salle de sport animée à Abidjan, planning, calculateur IMC et inscription par WhatsApp.">
 <style>
-:root{--bg:#12102b;--p:#1c1940;--v:#8b7bff;--c:#3de0d0;--t:#f1f0ff;--m:#9b98c4}
+:root{--bg:#0e0c24;--p:#1a1740;--v:#8b7bff;--c:#3de0d0;--t:#f1f0ff;--m:#9b98c4}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
-nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:#12102bee;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff12}
-nav b{font-size:21px}nav b em{color:var(--c);font-style:normal}nav a{color:var(--t);text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
-.hero{position:relative;overflow:hidden;padding:90px 5vw;min-height:78vh;display:flex;flex-direction:column;justify-content:center}
-.hero::before{content:'';position:absolute;right:-120px;top:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#8b7bff66,transparent 68%);animation:pl 5s ease-in-out infinite}
-@keyframes pl{50%{transform:scale(1.15)}}
-.hero h1{font-size:clamp(36px,6vw,72px);line-height:1.02;margin-bottom:16px;position:relative}.hero h1 span{background:linear-gradient(90deg,var(--v),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--m);max-width:520px;margin-bottom:26px;position:relative}
-.btn{display:inline-block;padding:13px 28px;border-radius:30px;font-weight:700;border:0;cursor:pointer;font-size:15px;text-decoration:none;transition:.25s;position:relative}
-.b1{background:linear-gradient(90deg,var(--v),var(--c));color:#0b0a20}.b1:hover{transform:translateY(-3px);box-shadow:0 12px 28px #8b7bff55}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+@media(pointer:fine){body,a,button,select,input,.pl{cursor:none}}
+#cu{position:fixed;left:0;top:0;width:22px;height:22px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+#cu.h{width:66px;height:66px}@media(pointer:coarse){#cu{display:none}}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--v),var(--c));z-index:60}
+nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;backdrop-filter:blur(10px);background:#0e0c24aa;border-bottom:1px solid #ffffff10}
+nav b{font-size:22px;font-weight:900}nav b em{color:var(--c);font-style:normal}nav a{color:var(--t);text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 5vw 90px;overflow:hidden}
+#fx{position:absolute;inset:0;width:100%;height:100%}
+.hero>*:not(canvas){position:relative;z-index:2}
+.hero h1{font-size:clamp(40px,9.6vw,150px);line-height:.95;font-weight:900;letter-spacing:-2px;white-space:nowrap}
+.hero h1 .ln{display:block}.hero h1 .lt{display:inline-block;transition:transform .15s,color .2s;will-change:transform}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--v)}.hero h1 .o .lt{-webkit-text-stroke:2px var(--c)}
+.hero p{color:var(--m);max-width:500px;margin:20px 0 26px}
+.btn{display:inline-block;padding:14px 30px;border-radius:40px;font-weight:700;border:0;font-size:15px;text-decoration:none;position:relative;transition:box-shadow .3s}
+.b1{background:linear-gradient(90deg,var(--v),var(--c));color:#0b0a20;animation:pu 2.4s infinite}@keyframes pu{0%{box-shadow:0 0 0 0 #8b7bff88}70%{box-shadow:0 0 0 18px #8b7bff00}}
 .b2{border:2px solid #ffffff33;color:var(--t);margin-left:8px}
-section{padding:70px 5vw}h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:8px}h2 em{color:var(--c);font-style:normal}.sub{color:var(--m);margin-bottom:26px}
+.hero>.ecg{position:absolute;right:5vw;bottom:90px;width:min(420px,70vw);z-index:2;text-align:right}
+.ecg svg{width:100%;height:80px;overflow:visible}.ecg path{fill:none;stroke:var(--c);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:600;animation:ec 2.4s linear infinite;filter:drop-shadow(0 0 6px var(--c))}
+@keyframes ec{to{stroke-dashoffset:-600}}
+.bpm{font-weight:900;font-size:44px;color:var(--c)}.bpm small{font-size:13px;color:var(--m);letter-spacing:3px;margin-left:6px}
+.hb{display:inline-block;animation:hb .75s infinite}@keyframes hb{20%{transform:scale(1.3)}40%{transform:scale(1)}}
+.mq{overflow:hidden;white-space:nowrap;padding:22px 0;border-block:1px solid #ffffff14;background:var(--p)}
+.mq div{display:inline-block;will-change:transform}.mq span{font-size:clamp(34px,6vw,70px);font-weight:900;margin:0 26px;color:transparent;-webkit-text-stroke:1.5px var(--v)}.mq span:nth-child(even){color:var(--c);-webkit-text-stroke:0}
+section{padding:80px 5vw;position:relative}h2{font-size:clamp(28px,4.2vw,50px);margin-bottom:8px;line-height:1.1}h2 em{color:var(--c);font-style:normal}.sub{color:var(--m);margin-bottom:26px}
+/* disciplines : défilement horizontal épinglé */
+#hz{height:360vh;padding:0}.hp{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hp h2{padding:0 5vw;margin-bottom:26px}
+.tr{display:flex;gap:26px;padding:0 5vw;will-change:transform}
+.dc{flex:0 0 min(380px,78vw);height:min(420px,52vh);border-radius:28px;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;border:1px solid #ffffff18}
+.dc::before{content:attr(data-n);position:absolute;right:16px;top:-10px;font-size:150px;font-weight:900;color:#ffffff10;line-height:1}
+.dc i{font-style:normal;font-size:56px;position:absolute;left:26px;top:26px;animation:fl 3s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px) rotate(6deg)}}
+.dc h3{font-size:28px}.dc p{color:#ffffffbb;font-size:14.5px}
+.hb2{position:absolute;bottom:26px;left:5vw;right:5vw;height:4px;border-radius:4px;background:#ffffff18}.hb2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--v),var(--c));border-radius:4px}
+/* planning */
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.tabs button{padding:10px 20px;border-radius:30px;border:1.5px solid #ffffff22;background:transparent;color:var(--t);font-weight:600;cursor:pointer}
-.tabs button.on{background:var(--v);border-color:var(--v);color:#0b0a20}
+.tabs button{padding:10px 20px;border-radius:30px;border:1.5px solid #ffffff22;background:transparent;color:var(--t);font-weight:600;transition:.25s}
+.tabs button.on{background:var(--v);border-color:var(--v);color:#0b0a20;transform:scale(1.08)}
 .cl{display:grid;gap:12px;max-width:760px}
-.c{display:flex;align-items:center;gap:16px;background:var(--p);border-radius:16px;padding:16px 20px;border:1px solid #ffffff10;animation:in .4s}
-@keyframes in{from{opacity:0;transform:translateX(-20px)}}
-.c time{font-weight:800;font-size:20px;color:var(--c);min-width:70px}.c div{flex:1}.c small{color:var(--m)}
-.c button{padding:9px 16px;border-radius:20px;border:1.5px solid var(--v);background:transparent;color:var(--t);cursor:pointer;font-weight:600}.c button:hover{background:var(--v);color:#0b0a20}
+.c{display:flex;align-items:center;gap:16px;background:var(--p);border-radius:16px;padding:16px 20px;border:1px solid #ffffff10;animation:in .5s backwards;animation-delay:calc(var(--i)*90ms);transition:transform .2s,border-color .2s}
+.c:hover{transform:translateX(10px);border-color:var(--c)}
+@keyframes in{from{opacity:0;transform:translateX(-40px) scale(.96)}}
+.c time{font-weight:900;font-size:22px;color:var(--c);min-width:74px}.c div{flex:1}.c small{color:var(--m)}
+.c button{padding:9px 16px;border-radius:20px;border:1.5px solid var(--v);background:transparent;color:var(--t);font-weight:600}.c button:hover{background:var(--v);color:#0b0a20}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.bx{background:var(--p);border-radius:22px;padding:28px;border:1px solid #ffffff10}
-label{display:block;font-size:13px;color:var(--m);margin-top:12px}
+.bx{background:var(--p);border-radius:24px;padding:28px;border:1px solid #ffffff10}
+label.l{display:block;font-size:13px;color:var(--m);margin-top:12px}
 input,select{width:100%;padding:12px;border-radius:12px;border:1.5px solid #ffffff22;background:var(--bg);color:var(--t);font:inherit;margin-top:4px}
-.imc{margin-top:18px;padding:18px;border-radius:14px;background:var(--bg);text-align:center}.imc b{font-size:38px;color:var(--c);display:block}
-.gauge{height:8px;border-radius:8px;background:linear-gradient(90deg,#4da3ff,#3de0d0,#ffc933,#ff5d5d);position:relative;margin-top:12px}.gauge i{position:absolute;top:-4px;width:6px;height:16px;border-radius:3px;background:#fff;left:0;transition:left .6s}
-.sw{display:inline-flex;background:var(--bg);border-radius:30px;padding:4px;margin-bottom:18px}.sw button{padding:8px 18px;border:0;border-radius:30px;background:transparent;color:var(--t);font-weight:600;cursor:pointer}.sw button.on{background:var(--v);color:#0b0a20}
-.pr{display:grid;gap:10px}.pl{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:14px;border:1.5px solid #ffffff1a;cursor:pointer;transition:.2s}
-.pl.on{border-color:var(--c);background:#3de0d014}.pl b{font-size:18px;color:var(--c)}
+.imc{margin-top:18px;padding:18px;border-radius:14px;background:var(--bg);text-align:center}.imc b{font-size:44px;color:var(--c);display:block;line-height:1.1}
+.gauge{height:10px;border-radius:8px;background:linear-gradient(90deg,#4da3ff,#3de0d0,#ffc933,#ff5d5d);position:relative;margin-top:14px}.gauge i{position:absolute;top:-5px;width:8px;height:20px;border-radius:4px;background:#fff;left:0;transition:left .8s cubic-bezier(.3,1.5,.5,1);box-shadow:0 0 10px #fff}
+.sw{display:inline-flex;background:var(--bg);border-radius:30px;padding:4px;margin:12px 0 16px}.sw button{padding:8px 18px;border:0;border-radius:30px;background:transparent;color:var(--t);font-weight:600;transition:.3s}.sw button.on{background:var(--v);color:#0b0a20}
+.pr{display:grid;gap:10px}.pl{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:14px;border:1.5px solid #ffffff1a;transition:.25s}
+.pl:hover{transform:scale(1.02)}.pl.on{border-color:var(--c);background:#3de0d014;box-shadow:0 0 24px #3de0d022}.pl b.pv{font-size:18px;color:var(--c)}
 .bx .btn{width:100%;margin-top:16px}
-.rv{opacity:0;transform:translateY(30px);transition:.7s}.rv.on{opacity:1;transform:none}
+.rv{opacity:0;transform:translateY(50px);transition:opacity .9s,transform .9s}.rv.on{opacity:1;transform:none}
+.nm{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;text-align:center;padding-top:0}.nm div{padding:26px;border-radius:20px;background:var(--p);border:1px solid #ffffff10}.nm b{display:block;font-size:46px;color:var(--c)}
 footer{text-align:center;padding:26px;color:var(--m);font-size:13px;border-top:1px solid #ffffff12}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--v);color:#0b0a20;font-weight:600;padding:12px 22px;border-radius:30px;transition:.4s;z-index:9;font-size:14px}.toast.on{transform:translateX(-50%)}
-@media(max-width:800px){.two{grid-template-columns:1fr}nav a:not(:last-child){display:none}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--v);color:#0b0a20;font-weight:600;padding:12px 22px;border-radius:30px;transition:.4s;z-index:9990;font-size:14px}.toast.on{transform:translateX(-50%)}
+@media(max-width:800px){.two{grid-template-columns:1fr}nav a:not(:last-child){display:none}.hero>.ecg{position:relative;right:auto;bottom:auto;margin-top:30px;text-align:left}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style></head><body>
-<nav><b>KORA<em>FIT</em></b><div><a href="#planning">Planning</a><a href="#outils">Mon IMC</a><a href="#outils">Abonnement</a></div></nav>
-<header class="hero"><h1>Bougez.<br><span>Dépassez-vous.</span></h1>
-<p>Salle de sport à Abidjan : musculation, cardio, cross-training, danse et yoga. Coachs diplômés, ambiance motivante, abonnement sans engagement.</p>
-<div><a class="btn b1" href="#outils">S'abonner</a><a class="btn b2" href="#planning">Voir le planning</a></div></header>
+<div id="cu"></div><div id="pg"></div>
+<nav><b>KORA<em>FIT</em></b><div><a href="#hz">Disciplines</a><a href="#planning">Planning</a><a href="#outils">Abonnement</a></div></nav>
+<header class="hero"><canvas id="fx"></canvas>
+<h1><span class="ln" data-s="BOUGEZ."></span><span class="ln o" data-s="DÉPASSEZ-"></span><span class="ln o" data-s="VOUS."></span></h1>
+<p>Salle de sport à Abidjan : musculation, cardio, cross-training, danse et yoga. Coachs diplômés, ambiance qui donne envie de revenir.</p>
+<div><a class="btn b1 mg" href="#outils">S'abonner</a><a class="btn b2 mg" href="#planning">Voir le planning</a></div>
+<div class="ecg"><div class="bpm"><span class="hb">❤</span> <span id="bp">60</span><small>BPM</small></div><svg viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 40H110L125 40 140 8 160 72 176 24 188 40H400"/></svg></div></header>
+<div class="mq"><div id="mq"></div></div>
+<section id="hz"><div class="hp"><h2>Nos <em>disciplines</em></h2><div class="tr" id="tr"></div><div class="hb2"><i id="hbar"></i></div></div></section>
 <section id="planning"><h2 class="rv">Planning <em>des cours</em></h2><p class="sub rv">Choisissez un jour et réservez votre place par WhatsApp.</p>
 <div class="tabs rv" id="tb"></div><div class="cl" id="cl"></div></section>
 <section id="outils"><div class="two">
-<div class="bx rv"><h2 style="font-size:26px">Mon <em>IMC</em></h2><label>Poids (kg)<input id="kg" type="number" min="30" max="250" value="70"></label><label>Taille (cm)<input id="cm" type="number" min="120" max="230" value="172"></label>
+<div class="bx rv"><h2 style="font-size:28px">Mon <em>IMC</em></h2><label class="l">Poids (kg)<input id="kg" type="number" min="30" max="250" value="70"></label><label class="l">Taille (cm)<input id="cm" type="number" min="120" max="230" value="172"></label>
 <div class="imc"><b id="iv">—</b><span id="il">Entrez vos mesures</span><div class="gauge"><i id="gi"></i></div></div></div>
-<div class="bx rv"><h2 style="font-size:26px">Mon <em>abonnement</em></h2><div class="sw" id="sw"><button class="on" data-m="1">Mensuel</button><button data-m="12">Annuel −20%</button></div>
-<div class="pr" id="pr"></div><label>Nom<input id="nm" maxlength="60" placeholder="Votre nom"></label>
-<button class="btn b1" id="go">M'inscrire par WhatsApp</button></div></div></section>
+<div class="bx rv"><h2 style="font-size:28px">Mon <em>abonnement</em></h2><div class="sw" id="sw"><button class="on" data-m="1">Mensuel</button><button data-m="12">Annuel −20%</button></div>
+<div class="pr" id="pr"></div><label class="l">Nom<input id="nm" maxlength="60" placeholder="Votre nom"></label>
+<button class="btn b1 mg" id="go">M'inscrire par WhatsApp</button></div></div></section>
+<section><div class="nm rv"><div class="tl"><b data-n="1200">0</b>membres actifs</div><div class="tl"><b data-n="7">0</b>coachs diplômés</div><div class="tl"><b data-n="45">0</b>cours par semaine</div><div class="tl"><b data-n="365">0</b>jours d'ouverture</div></div></section>
 <footer>© 2026 Kora Fit — site de démonstration réalisé par Junior Gnezale · Riviera, Abidjan</footer>
 <div class="toast" id="ts"></div>
 <script>
-const D={Lun:[['06:30','Musculation guidée','Coach Yao · 60 min'],['12:30','Cardio express','Coach Awa · 30 min'],['18:30','Cross-training','Coach Koffi · 60 min']],
-Mar:[['07:00','Yoga','Coach Mariam · 60 min'],['18:00','Zumba','Coach Awa · 60 min'],['19:30','Boxe fitness','Coach Yao · 60 min']],
-Mer:[['06:30','Cross-training','Coach Koffi · 60 min'],['12:30','Abdos-fessiers','Coach Mariam · 30 min'],['18:30','Musculation guidée','Coach Yao · 60 min']],
-Jeu:[['07:00','Pilates','Coach Mariam · 60 min'],['18:00','Cardio dance','Coach Awa · 60 min'],['19:30','Cross-training','Coach Koffi · 60 min']],
-Ven:[['06:30','Boxe fitness','Coach Yao · 60 min'],['12:30','Cardio express','Coach Awa · 30 min'],['18:30','Zumba','Coach Awa · 60 min']],
-Sam:[['09:00','Cross-training XL','Coach Koffi · 90 min'],['11:00','Yoga détente','Coach Mariam · 60 min']]};
-const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' FCFA',ts=document.getElementById('ts');
-function toast(m){ts.textContent=m;ts.classList.add('on');setTimeout(()=>ts.classList.remove('on'),2400)}
-const tb=document.getElementById('tb'),cl=document.getElementById('cl');let day='Lun';
+const $=id=>document.getElementById(id),fine=matchMedia('(pointer:fine)').matches;
+// curseur
+let mx=-99,my=-99,cx=-99,cy=-99;
+if(fine){addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});(function f(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;$('cu').style.left=cx+'px';$('cu').style.top=cy+'px';requestAnimationFrame(f)})();
+document.querySelectorAll('a,button,.pl,select,input').forEach(e=>{e.addEventListener('mouseenter',()=>$('cu').classList.add('h'));e.addEventListener('mouseleave',()=>$('cu').classList.remove('h'))});
+document.querySelectorAll('.mg').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')})}
+// titre : lettres qui réagissent à la souris
+document.querySelectorAll('.hero h1 .ln').forEach(l=>l.innerHTML=[...l.dataset.s].map(c=>`<span class="lt">${c}</span>`).join(''));
+const CH=[...document.querySelectorAll('.hero h1 .lt')];
+function wob(){const hh=document.querySelector('.hero').getBoundingClientRect();if(hh.bottom<0)return;CH.forEach((c,i)=>{const r=c.getBoundingClientRect(),dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height/2),d=Math.hypot(dx,dy),k=Math.max(0,1-d/260),t=performance.now()/500+i*.4;
+c.style.transform=`translate(${-dx*k*.18}px,${-dy*k*.18+Math.sin(t)*3}px) scale(${1+k*.25}) rotate(${k*(dx>0?-8:8)}deg)`})}
+// fond : particules d'énergie
+const cv=$('fx'),x=cv.getContext('2d');let P=[],B=[];
+function rs(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;P=Array.from({length:70},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:1+Math.random()*3,s:.3+Math.random()*1.2,h:Math.random()<.5?265:172}))}rs();addEventListener('resize',rs);
+cv.parentElement.addEventListener('click',e=>{const r=cv.getBoundingClientRect();B.push({x:e.clientX-r.left,y:e.clientY-r.top,r:0})});
+function fx(){x.clearRect(0,0,cv.width,cv.height);const t=performance.now()/1000;
+for(let k=0;k<4;k++){x.strokeStyle=`hsla(${k%2?172:258},90%,65%,${.12-k*.02})`;x.lineWidth=2;x.beginPath();x.arc(cv.width*.78,cv.height*.4,120+k*70+Math.sin(t*2+k)*14,0,7);x.stroke()}
+P.forEach(p=>{p.y-=p.s;if(p.y<-10){p.y=cv.height+10;p.x=Math.random()*cv.width}const r=cv.getBoundingClientRect(),d=Math.hypot(p.x-(mx-r.left),p.y-(my-r.top));if(d<140){p.x+=(p.x-(mx-r.left))*.03;p.y+=(p.y-(my-r.top))*.03}
+x.fillStyle=`hsla(${p.h},90%,68%,.7)`;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});
+B=B.filter(b=>b.r<320);B.forEach(b=>{b.r+=7;x.strokeStyle=`rgba(61,224,208,${1-b.r/320})`;x.lineWidth=3;x.beginPath();x.arc(b.x,b.y,b.r,0,7);x.stroke()});wob();requestAnimationFrame(fx)}fx();
+// BPM qui monte
+let bp=60;const bi=setInterval(()=>{bp+=3;$('bp').textContent=bp;if(bp>=142){clearInterval(bi);setInterval(()=>$('bp').textContent=138+Math.round(Math.random()*8),900)}},45);
+// marquee réagissant au défilement
+const MQ=['COURS','CARDIO','FORCE','ÉNERGIE','DANSE','YOGA'];$('mq').innerHTML=MQ.map(s=>`<span>${s}</span>`).join('').repeat(8);let mo=0,dir=1,ly=0;
+// disciplines : défilement horizontal
+const DS=[['💪','Musculation','Machines guidées et poids libres, programme sur mesure.','linear-gradient(145deg,#3b2f9e,#1a1740)'],['🏃','Cardio','Tapis, vélos et rameurs pour brûler et tenir longtemps.','linear-gradient(145deg,#0f6e6a,#12214a)'],['🥊','Boxe fitness','Technique, rythme et défoulement sans contact.','linear-gradient(145deg,#8a2e6b,#1a1740)'],['🕺','Zumba & danse','Chorégraphies afro et latino, bonne humeur garantie.','linear-gradient(145deg,#b0572b,#2a1448)'],['🧘','Yoga & pilates','Souplesse, respiration et récupération.','linear-gradient(145deg,#1d7a58,#14214a)']];
+$('tr').innerHTML=DS.map((d,i)=>`<article class="dc" data-n="0${i+1}" style="background:${d[3]}"><i>${d[0]}</i><h3>${d[1]}</h3><p>${d[2]}</p></article>`).join('');
+const hz=$('hz'),tr=$('tr');
+function sc(){const h=document.body.scrollHeight-innerHeight;$('pg').style.width=scrollY/h*100+'%';
+const d=scrollY-ly;if(Math.abs(d)>1)dir=d>0?1:-1;ly=scrollY;mo-=dir*(1.2+Math.min(Math.abs(d),40)*.12);$('mq').style.transform=`translateX(${((mo%1500)-1500)}px)`;
+const r=hz.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(r.height-innerHeight)));tr.style.transform=`translateX(${-p*Math.max(0,tr.scrollWidth-innerWidth)}px)`;$('hbar').style.width=p*100+'%'}
+addEventListener('scroll',sc,{passive:true});sc();
+// planning
+const D={Lun:[['06:30','Musculation guidée','Coach Yao · 60 min'],['12:30','Cardio express','Coach Awa · 30 min'],['18:30','Cross-training','Coach Koffi · 60 min']],Mar:[['07:00','Yoga','Coach Mariam · 60 min'],['18:00','Zumba','Coach Awa · 60 min'],['19:30','Boxe fitness','Coach Yao · 60 min']],Mer:[['06:30','Cross-training','Coach Koffi · 60 min'],['12:30','Abdos-fessiers','Coach Mariam · 30 min'],['18:30','Musculation guidée','Coach Yao · 60 min']],Jeu:[['07:00','Pilates','Coach Mariam · 60 min'],['18:00','Cardio dance','Coach Awa · 60 min'],['19:30','Cross-training','Coach Koffi · 60 min']],Ven:[['06:30','Boxe fitness','Coach Yao · 60 min'],['12:30','Cardio express','Coach Awa · 30 min'],['18:30','Zumba','Coach Awa · 60 min']],Sam:[['09:00','Cross-training XL','Coach Koffi · 90 min'],['11:00','Yoga détente','Coach Mariam · 60 min']]};
+const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' FCFA';function toast(m){$('ts').textContent=m;$('ts').classList.add('on');setTimeout(()=>$('ts').classList.remove('on'),2400)}
+const tb=$('tb'),cl=$('cl');let day='Lun';
 tb.innerHTML=Object.keys(D).map(d=>`<button data-d="${d}" class="${d==day?'on':''}">${d}</button>`).join('');
-function draw(){cl.innerHTML=D[day].map((c,i)=>`<div class="c"><time>${c[0]}</time><div><b>${c[1]}</b><br><small>${c[2]}</small></div><button data-i="${i}">Réserver</button></div>`).join('')}draw();
-tb.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;tb.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b));draw()};
-const nm=document.getElementById('nm');
-cl.onclick=e=>{const b=e.target.closest('button');if(!b)return;const c=D[day][+b.dataset.i];
-const m=`Bonjour Kora Fit, je réserve une place.\nNom : ${nm.value||'—'}\nCours : ${c[1]}\nJour : ${day} à ${c[0]}`;window.open('https://wa.me/2250758167537?text='+encodeURIComponent(m),'_blank','noopener')};
-const kg=document.getElementById('kg'),cm=document.getElementById('cm'),iv=document.getElementById('iv'),il=document.getElementById('il'),gi=document.getElementById('gi');
-function imc(){const w=+kg.value,h=+cm.value/100;if(!w||!h){iv.textContent='—';return}const v=w/(h*h);iv.textContent=v.toFixed(1);
-il.textContent=v<18.5?'Insuffisance pondérale':v<25?'Corpulence normale':v<30?'Surpoids':'Obésité';gi.style.left=Math.min(100,Math.max(0,(v-15)/25*100))+'%'}
+function draw(){cl.innerHTML=D[day].map((c,i)=>`<div class="c" style="--i:${i}"><time>${c[0]}</time><div><b>${c[1]}</b><br><small>${c[2]}</small></div><button data-i="${i}">Réserver</button></div>`).join('')}draw();
+tb.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;tb.querySelectorAll('button').forEach(y=>y.classList.toggle('on',y==b));draw()};
+cl.onclick=e=>{const b=e.target.closest('button');if(!b)return;const c=D[day][+b.dataset.i];window.open('https://wa.me/2250758167537?text='+encodeURIComponent(`Bonjour Kora Fit, je réserve une place.\nNom : ${$('nm').value||'—'}\nCours : ${c[1]}\nJour : ${day} à ${c[0]}`),'_blank','noopener')};
+// IMC
+const kg=$('kg'),cm=$('cm');let ivs=0;
+function imc(){const w=+kg.value,h=+cm.value/100;if(!w||!h){$('iv').textContent='—';return}const v=w/(h*h),f=ivs,t1=performance.now();(function c(n){const k=Math.min(1,(n-t1)/600);ivs=f+(v-f)*k;$('iv').textContent=ivs.toFixed(1);if(k<1)requestAnimationFrame(c)})(t1);
+$('il').textContent=v<18.5?'Insuffisance pondérale':v<25?'Corpulence normale':v<30?'Surpoids':'Obésité';$('gi').style.left=`calc(${Math.min(100,Math.max(0,(v-15)/25*100))}% - 4px)`}
 kg.oninput=cm.oninput=imc;imc();
-const P=[['Essentiel','Salle + cardio',15000],['Premium','Salle + tous les cours',25000],['Coaching','Premium + 4 séances perso/mois',45000]];let mo=1,pi=1;
-const pr=document.getElementById('pr');
-function drawP(){pr.innerHTML=P.map((p,i)=>{const t=mo==12?p[2]*12*.8:p[2];return `<div class="pl ${i==pi?'on':''}" data-i="${i}"><div><b style="color:inherit;font-size:16px">${p[0]}</b><br><small style="color:var(--m)">${p[1]}</small></div><b>${fmt(t)}${mo==12?' / an':' / mois'}</b></div>`}).join('')}drawP();
-pr.onclick=e=>{const l=e.target.closest('.pl');if(!l)return;pi=+l.dataset.i;drawP()};
-document.getElementById('sw').onclick=e=>{const b=e.target.closest('button');if(!b)return;mo=+b.dataset.m;document.querySelectorAll('#sw button').forEach(x=>x.classList.toggle('on',x==b));drawP()};
-document.getElementById('go').onclick=()=>{const p=P[pi],t=mo==12?p[2]*12*.8:p[2];
-const m=`Bonjour Kora Fit, je souhaite m'abonner.\nNom : ${nm.value||'—'}\nFormule : ${p[0]} (${mo==12?'annuel':'mensuel'})\nTotal : ${fmt(t)}`;window.open('https://wa.me/2250758167537?text='+encodeURIComponent(m),'_blank','noopener')};
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// abonnement
+const P2=[['Essentiel','Salle + cardio',15000],['Premium','Salle + tous les cours',25000],['Coaching','Premium + 4 séances perso/mois',45000]];let mo2=1,pi=1;
+function drawP(){$('pr').innerHTML=P2.map((p,i)=>`<div class="pl ${i==pi?'on':''}" data-i="${i}"><div><b>${p[0]}</b><br><small style="color:var(--m)">${p[1]}</small></div><b class="pv">${fmt(mo2==12?p[2]*12*.8:p[2])}${mo2==12?' / an':' / mois'}</b></div>`).join('')}drawP();
+$('pr').onclick=e=>{const l=e.target.closest('.pl');if(!l)return;pi=+l.dataset.i;drawP()};
+$('sw').onclick=e=>{const b=e.target.closest('button');if(!b)return;mo2=+b.dataset.m;document.querySelectorAll('#sw button').forEach(y=>y.classList.toggle('on',y==b));drawP()};
+$('go').onclick=()=>{const p=P2[pi];window.open('https://wa.me/2250758167537?text='+encodeURIComponent(`Bonjour Kora Fit, je souhaite m'abonner.\nNom : ${$('nm').value||'—'}\nFormule : ${p[0]} (${mo2==12?'annuel':'mensuel'})\nTotal : ${fmt(mo2==12?p[2]*12*.8:p[2])}`),'_blank','noopener')};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('on');t.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;let i=0,st=Math.ceil(n/60);const id=setInterval(()=>{i=Math.min(n,i+st);b.textContent=i;if(i>=n)clearInterval(id)},20)});io.unobserve(t)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*.1+'s';io.observe(el)});
 </script></body></html>

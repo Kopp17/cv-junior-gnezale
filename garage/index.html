@@ -4,71 +4,151 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="../favicon.png">
 <title>Éclat Auto — Garage et lavage à Abidjan</title>
-<meta name="description" content="Démo : garage et lavage auto à Abidjan, devis instantané et rendez-vous par WhatsApp.">
+<meta name="description" content="Démo : garage et lavage auto à Abidjan, compteur animé, devis instantané et rendez-vous par WhatsApp.">
 <style>
-:root{--bg:#111418;--p:#1a1f26;--r:#ff4d2e;--r2:#ff8a3d;--t:#eef1f5;--m:#8d97a6}
+:root{--bg:#0d0f13;--p:#171b22;--r:#ff4d2e;--r2:#ff8a3d;--t:#eef1f5;--m:#8d97a6}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
-nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:#111418ee;backdrop-filter:blur(8px);border-bottom:1px solid #ffffff12}
-nav b{font-size:20px;letter-spacing:1px}nav b em{color:var(--r);font-style:normal}nav a{color:var(--t);text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:70px 5vw;min-height:80vh}
-.hero h1{font-size:clamp(34px,5.4vw,64px);line-height:1.05;margin-bottom:16px}.hero h1 span{color:var(--r)}
-.hero p{color:var(--m);max-width:520px;margin-bottom:26px}
-.btn{display:inline-block;padding:13px 28px;border-radius:30px;font-weight:700;border:0;cursor:pointer;font-size:15px;text-decoration:none;transition:.25s}
-.b1{background:linear-gradient(90deg,var(--r),var(--r2));color:#fff}.b1:hover{transform:translateY(-3px);box-shadow:0 12px 28px #ff4d2e55}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+@media(pointer:fine){body,a,button,label,select,input{cursor:none}}
+#cd,#cr{position:fixed;left:0;top:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+#cd{width:8px;height:8px;background:var(--r)}#cr{width:38px;height:38px;border:2px solid var(--r);transition:width .25s,height .25s,background .25s,border-color .25s;mix-blend-mode:screen}
+#cr.h{width:64px;height:64px;background:#ff4d2e33}
+@media(pointer:coarse){#cd,#cr{display:none}}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--r),var(--r2));z-index:60}
+nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;backdrop-filter:blur(10px);background:#0d0f13aa;border-bottom:1px solid #ffffff10}
+nav b{font-size:20px;letter-spacing:2px}nav b em{color:var(--r);font-style:normal}nav a{color:var(--t);text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;padding:110px 5vw 120px;overflow:hidden}
+#road{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero>*:not(canvas){position:relative;z-index:2}
+.hero h1{font-size:clamp(38px,6.4vw,84px);line-height:1;font-weight:900;letter-spacing:-1px}
+.hero h1 .ln{display:block;overflow:hidden}.hero h1 .ch{display:inline-block;transform:translateY(110%) rotate(8deg);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*40ms + 1.2s)}
+@keyframes up{to{transform:none}}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--r)}
+.hero p{color:var(--m);max-width:500px;margin:18px 0 28px;opacity:0;animation:fd 1s 2.2s forwards}@keyframes fd{to{opacity:1}}
+.btn{display:inline-block;padding:14px 30px;border-radius:40px;font-weight:700;border:0;font-size:15px;text-decoration:none;position:relative;overflow:hidden;transition:box-shadow .3s}
+.b1{background:linear-gradient(90deg,var(--r),var(--r2));color:#fff;animation:pu 2.4s infinite}@keyframes pu{70%{box-shadow:0 0 0 18px #ff4d2e00}0%{box-shadow:0 0 0 0 #ff4d2e88}}
 .b2{border:2px solid #ffffff33;color:var(--t);margin-left:8px}
-.wh{width:min(380px,80vw);margin:auto;animation:sp 12s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-section{padding:70px 5vw}h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:8px}h2 em{color:var(--r);font-style:normal}.sub{color:var(--m);margin-bottom:28px}
-.dv{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
-.sv{display:grid;gap:12px}
-.s{display:flex;align-items:center;gap:14px;background:var(--p);border:1.5px solid #ffffff12;border-radius:16px;padding:16px 18px;cursor:pointer;transition:.2s}
+.gz{position:relative;width:min(420px,86vw);margin:auto}
+.gz svg{width:100%;overflow:visible}
+#nd{transform-origin:150px 150px;transform:rotate(-120deg);transition:transform .12s linear}
+.kmh{position:absolute;left:0;right:0;top:66%;text-align:center}.kmh b{font-size:56px;font-weight:900;color:var(--r2);display:block;line-height:1}.kmh small{color:var(--m);letter-spacing:3px}
+.car{position:absolute;bottom:34px;left:-260px;width:220px;z-index:2;animation:drive 9s linear infinite}
+@keyframes drive{to{left:112%}}
+.car .w{transform-box:fill-box;transform-origin:center;animation:sp .5s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.scroll{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:var(--m);font-size:12px;letter-spacing:3px;z-index:2}
+.scroll::after{content:'';display:block;width:2px;height:34px;margin:8px auto 0;background:linear-gradient(var(--r),transparent);animation:ln 1.6s infinite}@keyframes ln{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.mq{overflow:hidden;white-space:nowrap;background:var(--r);color:#fff;padding:14px 0;font-weight:800;letter-spacing:3px;transform:rotate(-1.2deg);margin:-10px -2vw 40px;position:relative;z-index:3}
+.mq div{display:inline-block;animation:mq 24s linear infinite}.mq span{margin:0 28px}@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:80px 5vw;position:relative}
+h2{font-size:clamp(28px,4.2vw,50px);margin-bottom:8px;line-height:1.1}h2 em{color:var(--r);font-style:normal}.sub{color:var(--m);margin-bottom:30px}
+/* process épinglé */
+#proc{height:420vh;padding:0}
+.pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:0 5vw;overflow:hidden}
+.pin h2{margin-bottom:26px}
+.stp{display:grid;gap:10px}
+.sp2{display:flex;gap:16px;align-items:center;padding:14px 18px;border-radius:16px;border:1.5px solid #ffffff12;opacity:.35;transform:translateX(-10px);transition:.5s}
+.sp2.on{opacity:1;transform:none;border-color:var(--r);background:#ff4d2e12}.sp2 i{font-style:normal;font-size:28px}.sp2 b{display:block}.sp2 small{color:var(--m)}
+.big{position:relative;width:min(440px,80vw);margin:auto}.big svg{width:100%}
+#rim{transform-origin:100px 100px}
+#arc{stroke-dasharray:553;stroke-dashoffset:553}
+.pct{position:absolute;inset:0;display:grid;place-items:center;font-size:54px;font-weight:900;color:var(--t);text-shadow:0 0 14px #0d0f13,0 0 28px #0d0f13}
+/* devis */
+.dv{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}.sv{display:grid;gap:12px}
+.s{display:flex;align-items:center;gap:14px;background:var(--p);border:1.5px solid #ffffff12;border-radius:16px;padding:16px 18px;transition:transform .15s,border-color .2s,background .2s;transform-style:preserve-3d;position:relative;overflow:hidden}
+.s::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#ffffff14 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}.s:hover::after{transform:translateX(120%)}
 .s:hover{border-color:var(--r)}.s.on{border-color:var(--r);background:#2a1a18}
 .s i{font-style:normal;font-size:28px}.s div{flex:1}.s b{display:block}.s small{color:var(--m)}.s span{font-weight:700;color:var(--r2);white-space:nowrap}
-.s input{display:none}.s .ck{width:22px;height:22px;border-radius:50%;border:2px solid #ffffff44;display:grid;place-items:center;font-size:13px}.s.on .ck{background:var(--r);border-color:var(--r)}
-.sd{background:var(--p);border-radius:22px;padding:26px;border:1px solid #ffffff12;height:fit-content;position:sticky;top:80px}
-.sd h3{margin-bottom:12px}label{display:block;font-size:13px;color:var(--m);margin-top:12px}
+.s input{display:none}.s .ck{width:24px;height:24px;border-radius:50%;border:2px solid #ffffff44;display:grid;place-items:center;font-size:13px;font-style:normal;transition:.3s}.s.on .ck{background:var(--r);border-color:var(--r);transform:rotate(360deg) scale(1.15)}
+.sd{background:var(--p);border-radius:22px;padding:26px;border:1px solid #ffffff12;height:fit-content;position:sticky;top:90px}
+.sd h3{margin-bottom:8px}label.l{display:block;font-size:13px;color:var(--m);margin-top:12px}
 input.f,select{width:100%;padding:12px;border-radius:12px;border:1.5px solid #ffffff22;background:var(--bg);color:var(--t);font:inherit;margin-top:4px}
 .tot{margin:18px 0;padding:16px;border-radius:14px;background:var(--bg);display:flex;justify-content:space-between;align-items:center}.tot b{font-size:26px;color:var(--r2)}
+.tot.bump b{animation:bp .4s}@keyframes bp{40%{transform:scale(1.25)}}
 .sd .btn{width:100%}
 .st{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;text-align:center}
-.st div{background:var(--p);padding:26px;border-radius:18px;border:1px solid #ffffff10}.st b{display:block;font-size:42px;color:var(--r)}
-.rv{opacity:0;transform:translateY(30px);transition:.7s}.rv.on{opacity:1;transform:none}
+.st div{background:var(--p);padding:28px;border-radius:18px;border:1px solid #ffffff10;transition:transform .15s}.st b{display:block;font-size:44px;color:var(--r)}
+.rv{opacity:0;transform:translateY(50px);transition:opacity .9s,transform .9s}.rv.on{opacity:1;transform:none}
 footer{text-align:center;padding:26px;color:var(--m);font-size:13px;border-top:1px solid #ffffff12}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--r);color:#fff;padding:12px 22px;border-radius:30px;transition:.4s;z-index:9;font-size:14px}.toast.on{transform:translateX(-50%)}
-@media(max-width:800px){.hero,.dv{grid-template-columns:1fr}nav a:not(:last-child){display:none}.sd{position:static}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--r);color:#fff;padding:12px 22px;border-radius:30px;transition:.4s;z-index:9990;font-size:14px}.toast.on{transform:translateX(-50%)}
+@media(max-width:800px){.hero,.dv,.pin{grid-template-columns:1fr}.pin{align-content:center}.big{display:none}nav a:not(:last-child){display:none}.sd{position:static}.car{width:140px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 .ch{transform:none}.hero p{opacity:1}}
 </style></head><body>
-<nav><b>ÉCLAT<em>AUTO</em></b><div><a href="#devis">Devis</a><a href="#chiffres">Atelier</a><a href="#devis">Rendez-vous</a></div></nav>
-<header class="hero"><div><h1>Votre voiture mérite <span>l'éclat</span> du neuf.</h1>
-<p>Garage et lavage à Abidjan : vidange, freins, climatisation, lavage complet. Choisissez vos services, obtenez le devis tout de suite et prenez rendez-vous.</p>
-<a class="btn b1" href="#devis">Faire mon devis</a><a class="btn b2" href="#chiffres">Notre atelier</a></div>
-<svg class="wh" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="#1a1f26" stroke="#ff4d2e" stroke-width="6"/><circle cx="100" cy="100" r="70" fill="none" stroke="#ffffff22" stroke-width="3"/>
-<g stroke="#eef1f5" stroke-width="9" stroke-linecap="round"><path d="M100 100V34"/><path d="M100 100l57 33"/><path d="M100 100l-57 33"/><path d="M100 100l57-33" opacity=".5"/><path d="M100 100l-57-33" opacity=".5"/></g><circle cx="100" cy="100" r="14" fill="#ff4d2e"/></svg></header>
-<section id="devis"><h2 class="rv">Devis <em>instantané</em></h2><p class="sub rv">Cochez vos services, choisissez le type de véhicule : le prix se met à jour.</p>
+<div id="cd"></div><div id="cr"></div><div id="pg"></div>
+<nav><b>ÉCLAT<em>AUTO</em></b><div><a href="#proc">Méthode</a><a href="#devis">Devis</a><a href="#chiffres">Atelier</a></div></nav>
+<header class="hero"><canvas id="road"></canvas>
+<div><h1><span class="ln" data-s="Votre voiture"></span><span class="ln o" data-s="mérite"></span><span class="ln" data-s="l'éclat du neuf."></span></h1>
+<p>Garage et lavage à Abidjan : vidange, freins, climatisation, lavage complet. Choisissez vos services, obtenez le devis tout de suite.</p>
+<a class="btn b1 mg" href="#devis">Faire mon devis</a><a class="btn b2 mg" href="#proc">Notre méthode</a></div>
+<div class="gz"><svg viewBox="0 0 300 220" aria-hidden="true"><path d="M30 190A135 135 0 1 1 270 190" fill="none" stroke="#ffffff14" stroke-width="16" stroke-linecap="round"/>
+<path id="ga" d="M30 190A135 135 0 1 1 270 190" fill="none" stroke="url(#gg)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+<defs><linearGradient id="gg"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff2e2e"/></linearGradient></defs>
+<g id="ticks" stroke="#ffffff44" stroke-width="2"></g><g id="nd"><path d="M150 150L150 40" stroke="#eef1f5" stroke-width="5" stroke-linecap="round"/></g><circle cx="150" cy="150" r="14" fill="#ff4d2e"/></svg>
+<div class="kmh"><b id="kv">0</b><small>KM/H</small></div></div>
+<svg class="car" viewBox="0 0 220 80" aria-hidden="true"><path d="M8 52c0-8 6-12 16-14l28-22c4-3 8-4 14-4h50c8 0 14 3 20 8l20 16c18 2 38 4 42 12v10H8z" fill="#ff4d2e"/><path d="M62 20h46v20H48zM116 20h22l18 20h-40z" fill="#0d0f13" opacity=".7"/>
+<g class="w"><circle cx="52" cy="62" r="16" fill="#0d0f13" stroke="#eef1f5" stroke-width="3"/><path d="M52 50v24M40 62h24" stroke="#eef1f5" stroke-width="3"/></g><g class="w"><circle cx="168" cy="62" r="16" fill="#0d0f13" stroke="#eef1f5" stroke-width="3"/><path d="M168 50v24M156 62h24" stroke="#eef1f5" stroke-width="3"/></g></svg>
+<div class="scroll">SCROLL</div></header>
+<div class="mq"><div id="mq"></div></div>
+<section id="proc"><div class="pin"><div><h2>Notre <em>méthode</em></h2><div class="stp" id="stp"></div></div>
+<div class="big"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#ffffff10" stroke-width="10"/><circle id="arc" cx="100" cy="100" r="88" fill="none" stroke="#ff4d2e" stroke-width="10" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+<g id="rim"><circle cx="100" cy="100" r="64" fill="#171b22" stroke="#ffffff22" stroke-width="3"/><g stroke="#eef1f5" stroke-width="7" stroke-linecap="round"><path d="M100 100V46"/><path d="M100 100l51 37"/><path d="M100 100l-51 37"/><path d="M100 100l51-37" opacity=".5"/><path d="M100 100l-51-37" opacity=".5"/></g><circle cx="100" cy="100" r="11" fill="#ff4d2e"/></g></svg><div class="pct" id="pc">0%</div></div></div></section>
+<section id="devis"><h2 class="rv">Devis <em>instantané</em></h2><p class="sub rv">Cochez vos services, choisissez le véhicule : le prix se met à jour en direct.</p>
 <div class="dv"><div class="sv rv" id="sv"></div>
 <aside class="sd rv"><h3>Votre rendez-vous</h3>
-<label>Type de véhicule<select id="vt"><option value="1">Citadine</option><option value="1.25">Berline</option><option value="1.5">SUV / 4x4</option><option value="1.8">Pick-up / minibus</option></select></label>
-<label>Nom<input class="f" id="nm" maxlength="60" placeholder="Votre nom"></label>
-<label>Date souhaitée<input class="f" id="dt" type="date"></label>
-<div class="tot"><span id="nb">0 service</span><b id="tt">0 FCFA</b></div>
-<button class="btn b1" id="go">Réserver par WhatsApp</button></aside></div></section>
-<section id="chiffres"><div class="st rv"><div><b data-n="2400">0</b>véhicules entretenus</div><div><b data-n="9">0</b>mécaniciens</div><div><b data-n="48">0</b>mois de garantie pièces max</div><div><b data-n="98">0</b>% clients satisfaits</div></div></section>
+<label class="l">Type de véhicule<select id="vt"><option value="1">Citadine</option><option value="1.25">Berline</option><option value="1.5">SUV / 4x4</option><option value="1.8">Pick-up / minibus</option></select></label>
+<label class="l">Nom<input class="f" id="nm" maxlength="60" placeholder="Votre nom"></label>
+<label class="l">Date souhaitée<input class="f" id="dt" type="date"></label>
+<div class="tot" id="tot"><span id="nb">0 service</span><b id="tt">0 FCFA</b></div>
+<button class="btn b1 mg" id="go">Réserver par WhatsApp</button></aside></div></section>
+<section id="chiffres"><div class="st rv"><div class="tl"><b data-n="2400">0</b>véhicules entretenus</div><div class="tl"><b data-n="9">0</b>mécaniciens</div><div class="tl"><b data-n="48">0</b>mois de garantie pièces max</div><div class="tl"><b data-n="98">0</b>% clients satisfaits</div></div></section>
 <footer>© 2026 Éclat Auto — site de démonstration réalisé par Junior Gnezale · Marcory, Abidjan</footer>
 <div class="toast" id="ts"></div>
 <script>
-const S=[['🛢️','Vidange + filtre','Huile, filtre à huile, contrôle des niveaux',25000],['🛞','Freins','Plaquettes avant et contrôle des disques',45000],['❄️','Climatisation','Recharge gaz et contrôle des fuites',35000],['🔋','Batterie','Test, diagnostic et remplacement posé',60000],['🧼','Lavage complet','Extérieur, intérieur et aspiration',8000],['✨','Polissage','Carrosserie lustrée et protection',30000]];
-const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' FCFA',sv=document.getElementById('sv');
-sv.innerHTML=S.map((s,i)=>`<label class="s" data-i="${i}"><input type="checkbox"><i>${s[0]}</i><div><b>${s[1]}</b><small>${s[2]}</small></div><span>${fmt(s[3])}</span><em class="ck"></em></label>`).join('');
-const vt=document.getElementById('vt'),tt=document.getElementById('tt'),nb=document.getElementById('nb'),ts=document.getElementById('ts'),dt=document.getElementById('dt');
-dt.min=new Date().toISOString().slice(0,10);
-function sel(){return [...sv.querySelectorAll('.s.on')].map(e=>S[+e.dataset.i])}
-function calc(){const a=sel(),t=a.reduce((s,x)=>s+x[3],0)*vt.value;tt.textContent=fmt(t);nb.textContent=a.length+' service'+(a.length>1?'s':'');return t}
-sv.onclick=e=>{const l=e.target.closest('.s');if(!l)return;e.preventDefault();l.classList.toggle('on');l.querySelector('.ck').textContent=l.classList.contains('on')?'✓':'';calc()};
-vt.onchange=calc;function toast(m){ts.textContent=m;ts.classList.add('on');setTimeout(()=>ts.classList.remove('on'),2400)}
-document.getElementById('go').onclick=()=>{const a=sel();if(!a.length)return toast('Choisissez au moins un service');if(!dt.value)return toast('Choisissez une date');
-const m=`Bonjour Éclat Auto, je souhaite un rendez-vous.\nNom : ${document.getElementById('nm').value||'—'}\nVéhicule : ${vt.options[vt.selectedIndex].text}\nServices : ${a.map(x=>x[1]).join(', ')}\nDate : ${dt.value}\nTotal estimé : ${fmt(calc())}`;
+const $=id=>document.getElementById(id),fine=matchMedia('(pointer:fine)').matches,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+// titre lettre par lettre
+document.querySelectorAll('.hero h1 .ln').forEach((l,k)=>{let n=0;l.innerHTML=l.dataset.s.split(' ').map(w=>'<span style="display:inline-block;white-space:nowrap">'+[...w].map(c=>`<span class="ch" style="--i:${k*8+n++}">${c}</span>`).join('')+'</span>').join(' ')});
+$('mq').innerHTML=('<span>VIDANGE</span><span>★</span><span>FREINS</span><span>★</span><span>CLIMATISATION</span><span>★</span><span>BATTERIE</span><span>★</span><span>LAVAGE</span><span>★</span><span>POLISSAGE</span><span>★</span>').repeat(6);
+// curseur
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+if(fine){addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;$('cd').style.left=mx+'px';$('cd').style.top=my+'px'});
+(function f(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;$('cr').style.left=rx+'px';$('cr').style.top=ry+'px';requestAnimationFrame(f)})();
+document.querySelectorAll('a,button,.s,select,input').forEach(e=>{e.addEventListener('mouseenter',()=>$('cr').classList.add('h'));e.addEventListener('mouseleave',()=>$('cr').classList.remove('h'))});
+document.querySelectorAll('.mg').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')})}
+// compteur de vitesse
+const tk=$('ticks');for(let i=0;i<=12;i++){const a=(-210+i*20)*Math.PI/180,x1=150+Math.cos(a)*112,y1=150+Math.sin(a)*112,x2=150+Math.cos(a)*(i%3?120:128),y2=150+Math.sin(a)*(i%3?120:128);tk.insertAdjacentHTML('beforeend',`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`)}
+function speed(v){v=Math.max(0,Math.min(1,v));$('nd').style.transform=`rotate(${-120+v*240}deg)`;$('ga').style.strokeDashoffset=100-v*100;$('kv').textContent=Math.round(v*240)}
+let boot=0,t0=performance.now();(function b(t){const k=Math.min(1,(t-t0-900)/1500);if(k<0){requestAnimationFrame(b);return}boot=k<.5?k*2:1-(k-.5)*2;speed(boot*.92);if(k<1)requestAnimationFrame(b);else boot=0})(t0);
+// route : lignes de vitesse
+const cv=$('road'),x=cv.getContext('2d');let L=[],sv=0;
+function rs(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;L=Array.from({length:46},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,l:40+Math.random()*160,s:3+Math.random()*9,a:.1+Math.random()*.35}))}rs();addEventListener('resize',rs);
+(function d(){x.clearRect(0,0,cv.width,cv.height);const g=x.createLinearGradient(0,cv.height*.7,0,cv.height);g.addColorStop(0,'#0d0f1300');g.addColorStop(1,'#1c1114');x.fillStyle=g;x.fillRect(0,cv.height*.7,cv.width,cv.height*.3);
+x.strokeStyle='#ffffff';L.forEach(p=>{p.x-=p.s*(1+sv*3);if(p.x+p.l<0){p.x=cv.width+20;p.y=Math.random()*cv.height}x.globalAlpha=p.a;x.lineWidth=2;x.strokeStyle=p.y>cv.height*.7?'#ff4d2e':'#ffffff';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(p.x+p.l,p.y);x.stroke()});x.globalAlpha=1;
+const dash=(performance.now()/6)%80;x.strokeStyle='#ffffff55';x.lineWidth=3;x.setLineDash([40,40]);x.lineDashOffset=dash;x.beginPath();x.moveTo(0,cv.height-30);x.lineTo(cv.width,cv.height-30);x.stroke();x.setLineDash([]);requestAnimationFrame(d)})();
+// méthode épinglée
+const ST=[['🔍','Diagnostic','Contrôle complet et devis clair'],['🔧','Réparation','Pièces d\'origine ou équivalentes'],['🧼','Lavage & finition','Votre voiture rendue impeccable'],['🔑','Remise des clés','Garantie écrite incluse']];
+$('stp').innerHTML=ST.map(s=>`<div class="sp2"><i>${s[0]}</i><div><b>${s[1]}</b><small>${s[2]}</small></div></div>`).join('');
+const sp=[...document.querySelectorAll('.sp2')],pr=$('proc');
+function scroll(){const h=document.body.scrollHeight-innerHeight;$('pg').style.width=scrollY/h*100+'%';sv=Math.min(1,Math.abs(scrollY-(scroll.l||0))/60);scroll.l=scrollY;
+const hr=document.querySelector('.hero').offsetHeight;if(boot===0&&scrollY<hr&&!scroll.lock)speed(Math.min(1,scrollY/hr*1.1)*.95);
+const r=pr.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/(r.height-innerHeight)));
+$('arc').style.strokeDashoffset=553*(1-p);$('rim').style.transform=`rotate(${p*720}deg)`;$('pc').textContent=Math.round(p*100)+'%';
+const n=Math.min(3,Math.floor(p*4));sp.forEach((e,i)=>e.classList.toggle('on',i<=n&&p>0.02))}
+addEventListener('scroll',scroll,{passive:true});scroll();
+// devis
+const S=[['🛢️','Vidange + filtre','Huile, filtre, contrôle des niveaux',25000],['🛞','Freins','Plaquettes avant et disques',45000],['❄️','Climatisation','Recharge gaz et fuites',35000],['🔋','Batterie','Test, diagnostic et remplacement',60000],['🧼','Lavage complet','Extérieur, intérieur, aspiration',8000],['✨','Polissage','Carrosserie lustrée et protégée',30000]];
+const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' FCFA',sv2=$('sv');
+sv2.innerHTML=S.map((s,i)=>`<label class="s" data-i="${i}"><input type="checkbox"><i>${s[0]}</i><div><b>${s[1]}</b><small>${s[2]}</small></div><span>${fmt(s[3])}</span><em class="ck"></em></label>`).join('');
+const vt=$('vt'),dt=$('dt');dt.min=new Date().toISOString().slice(0,10);let shown=0;
+const sel=()=>[...sv2.querySelectorAll('.s.on')].map(e=>S[+e.dataset.i]);
+function calc(){const a=sel(),t=a.reduce((s,y)=>s+y[3],0)*vt.value;$('nb').textContent=a.length+' service'+(a.length>1?'s':'');const from=shown,t1=performance.now();
+(function c(n){const k=Math.min(1,(n-t1)/450);shown=from+(t-from)*(1-Math.pow(1-k,3));$('tt').textContent=fmt(shown);if(k<1)requestAnimationFrame(c)})(t1);$('tot').classList.remove('bump');void $('tot').offsetWidth;$('tot').classList.add('bump');return t}
+sv2.onclick=e=>{const l=e.target.closest('.s');if(!l)return;e.preventDefault();l.classList.toggle('on');l.querySelector('.ck').textContent=l.classList.contains('on')?'✓':'';calc()};vt.onchange=calc;
+document.querySelectorAll('.s').forEach(k=>{k.addEventListener('mousemove',e=>{if(!fine)return;const b=k.getBoundingClientRect(),px=(e.clientX-b.left)/b.width-.5,py=(e.clientY-b.top)/b.height-.5;k.style.transform=`perspective(700px) rotateY(${px*8}deg) rotateX(${-py*8}deg)`});k.addEventListener('mouseleave',()=>k.style.transform='')});
+function toast(m){$('ts').textContent=m;$('ts').classList.add('on');setTimeout(()=>$('ts').classList.remove('on'),2400)}
+$('go').onclick=()=>{const a=sel();if(!a.length)return toast('Choisissez au moins un service');if(!dt.value)return toast('Choisissez une date');
+const m=`Bonjour Éclat Auto, je souhaite un rendez-vous.\nNom : ${$('nm').value||'—'}\nVéhicule : ${vt.options[vt.selectedIndex].text}\nServices : ${a.map(y=>y[1]).join(', ')}\nDate : ${dt.value}\nTotal estimé : ${fmt(calc())}`;
 window.open('https://wa.me/2250758167537?text='+encodeURIComponent(m),'_blank','noopener')};
+// apparitions + compteurs
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('on');
 t.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;let i=0,st=Math.ceil(n/60);const id=setInterval(()=>{i=Math.min(n,i+st);b.textContent=i;if(i>=n)clearInterval(id)},20)});io.unobserve(t)}),{threshold:.15});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*.1+'s';io.observe(el)});
 </script></body></html>
