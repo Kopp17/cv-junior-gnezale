@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><script src="../loader.js" data-n="Ivoire Beats" data-bg="#12061f" data-ac="#ff4f9a" data-min="1100"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self' mailto: https://wa.me">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="../favicon.png">
+<title>Ivoire Beats — Festival de musique à Grand-Bassam</title>
+<meta name="description" content="Démo : festival de musique de 3 jours à Grand-Bassam, vidéos, line-up, compte à rebours et billetterie par WhatsApp.">
+<style>
+:root{--bg:#12061f;--p:#1d0e33;--k:#ff4f9a;--c:#35e0ff;--g:#ffd24a;--t:#f6f0ff;--m:#a898c4}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--k),var(--g),var(--c));z-index:60}
+nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;backdrop-filter:blur(10px);background:#12061fa0;border-bottom:1px solid #ffffff12}
+nav b{font-size:21px;font-weight:900;letter-spacing:1px}nav b em{color:var(--k);font-style:normal}nav a{color:var(--t);text-decoration:none;margin-left:22px;font-size:14px;font-weight:600}
+nav a.tk{background:var(--k);color:#1a0010;padding:8px 18px;border-radius:30px}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 5vw 80px;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#12061f99,#12061f22 40%,#12061fee);z-index:1}
+.hero>*:not(video){position:relative;z-index:2}
+.dt{letter-spacing:6px;font-size:13px;color:var(--g);font-weight:700;margin-bottom:10px}
+.hero h1{font-size:clamp(46px,12vw,170px);line-height:.92;font-weight:900;letter-spacing:-2px}
+.hero h1 .ln{display:block}.hero h1 .ch{display:inline-block;transform:translateY(80%) scale(.6);opacity:0;animation:pop .7s cubic-bezier(.2,1.4,.3,1) forwards;animation-delay:calc(var(--i)*55ms + 1.2s)}
+@keyframes pop{to{transform:none;opacity:1}}
+.hero h1 .a .ch{background:linear-gradient(90deg,var(--k),var(--g),var(--k));background-size:600% 100%;background-position:calc(var(--i)*18%) 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .b{color:transparent;-webkit-text-stroke:2px var(--c)}
+.hero p.sb{color:#e4d8f6;max-width:560px;margin:18px auto 22px;opacity:0;animation:fd 1s 2.3s forwards}@keyframes fd{to{opacity:1}}
+.cd{display:flex;gap:14px;justify-content:center;margin-bottom:28px;opacity:0;animation:fd 1s 2.5s forwards}
+.cd div{min-width:78px;padding:12px 8px;border-radius:16px;background:#ffffff14;backdrop-filter:blur(8px);border:1px solid #ffffff22}
+.cd b{display:block;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}.cd small{font-size:11px;letter-spacing:2px;color:var(--m)}
+.btn{display:inline-block;padding:14px 30px;border-radius:40px;font-weight:700;border:0;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .25s}
+.btn:hover{transform:translateY(-4px) scale(1.04)}
+.b1{background:linear-gradient(90deg,var(--k),var(--g));color:#1a0010;animation:pu 2.4s infinite}@keyframes pu{0%{box-shadow:0 0 0 0 #ff4f9a88}70%{box-shadow:0 0 0 18px #ff4f9a00}}
+.b2{border:2px solid #ffffff44;color:var(--t);margin-left:8px;background:transparent}
+.vc{position:absolute!important;right:5vw;bottom:24px;width:42px;height:42px;border-radius:50%;border:1.5px solid #ffffff55;background:#00000055;color:#fff;cursor:pointer;font-size:14px}
+.mq{overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,var(--k),#b23dff,var(--c));color:#12061f;padding:14px 0;font-weight:900;letter-spacing:3px}
+.mq div{display:inline-block;animation:mq 30s linear infinite}.mq span{margin:0 26px}@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:90px 5vw}h2{font-size:clamp(28px,4.4vw,56px);line-height:1.05;margin-bottom:10px}h2 em{font-style:normal;color:var(--k)}.sub{color:var(--m);margin-bottom:28px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tabs button{padding:11px 22px;border-radius:30px;border:1.5px solid #ffffff2a;background:transparent;color:var(--t);font-weight:700;cursor:pointer;transition:.25s}
+.tabs button.on{background:var(--c);color:#06202a;border-color:var(--c);transform:scale(1.06)}
+.lu{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.ar{position:relative;height:330px;border-radius:24px;overflow:hidden;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid #ffffff18;animation:in .6s backwards;animation-delay:calc(var(--i)*90ms);transition:transform .15s,box-shadow .3s;transform-style:preserve-3d}
+@keyframes in{from{opacity:0;transform:translateY(40px) scale(.95)}}
+.ar:hover{box-shadow:0 22px 50px #000a}
+.ar::before{content:attr(data-h);position:absolute;left:10px;top:-12px;font-size:120px;font-weight:900;color:#ffffff14;line-height:1}
+.ar .eq{position:absolute;right:20px;top:22px;display:flex;gap:4px;align-items:flex-end;height:34px}
+.ar .eq i{width:5px;border-radius:3px;background:#fff;height:8px;opacity:.6}.ar:hover .eq i{animation:eq .6s ease-in-out infinite alternate;opacity:1}
+.ar .eq i:nth-child(2){animation-delay:.1s!important}.ar .eq i:nth-child(3){animation-delay:.2s!important}.ar .eq i:nth-child(4){animation-delay:.3s!important}
+@keyframes eq{to{height:34px}}
+.ar h3{font-size:26px;line-height:1.1}.ar small{color:#ffffffcc;letter-spacing:1px}.ar .hr{margin-top:8px;font-weight:700;color:var(--g)}
+.am{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.vb{position:relative;border-radius:26px;overflow:hidden;border:1px solid #ffffff20;box-shadow:0 30px 70px #ff4f9a30;aspect-ratio:16/9;background:#000}
+.vb video{width:100%;height:100%;object-fit:cover;display:block}
+.pl{position:absolute;inset:0;margin:auto;width:92px;height:92px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--k),var(--g));color:#1a0010;font-size:32px;cursor:pointer;animation:pu 2.2s infinite;transition:.3s}
+.vb.go .pl{opacity:0;pointer-events:none;transform:scale(1.8)}
+.am ul{list-style:none;display:grid;gap:12px;margin-top:20px}.am li{display:flex;gap:12px;align-items:center;color:var(--m)}.am li i{font-style:normal;font-size:24px}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;text-align:center;padding-top:0}
+.st div{padding:28px;border-radius:20px;background:var(--p);border:1px solid #ffffff12}.st b{display:block;font-size:46px;background:linear-gradient(90deg,var(--k),var(--g));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tkb{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+.ps{display:grid;gap:14px}
+.p{display:flex;align-items:center;gap:16px;padding:20px;border-radius:20px;background:var(--p);border:1.5px solid #ffffff14;transition:.25s}
+.p.on{border-color:var(--k);background:#2a0f3f;box-shadow:0 0 30px #ff4f9a22}
+.p div{flex:1}.p b{font-size:19px;display:block}.p small{color:var(--m)}.p .pr{color:var(--g);font-weight:800;white-space:nowrap}
+.q{display:flex;align-items:center;gap:10px}.q button{width:34px;height:34px;border-radius:50%;border:1.5px solid #ffffff44;background:transparent;color:var(--t);font-size:18px;cursor:pointer}.q button:hover{background:var(--k);border-color:var(--k);color:#1a0010}.q span{min-width:20px;text-align:center;font-weight:800}
+.sd{background:var(--p);border-radius:24px;padding:28px;border:1px solid #ffffff14;height:fit-content;position:sticky;top:90px}
+label.l{display:block;font-size:13px;color:var(--m);margin-top:12px}input.f{width:100%;padding:12px;border-radius:12px;border:1.5px solid #ffffff2a;background:var(--bg);color:var(--t);font:inherit;margin-top:4px}
+.tot{margin:18px 0;padding:16px;border-radius:14px;background:var(--bg);display:flex;justify-content:space-between;align-items:center}.tot b{font-size:26px;color:var(--g)}.tot.bump b{animation:bp .4s}@keyframes bp{40%{transform:scale(1.25)}}
+.sd .btn{width:100%}
+.rv{opacity:0;transform:translateY(50px);transition:opacity .9s,transform .9s}.rv.on{opacity:1;transform:none}
+footer{text-align:center;padding:28px;color:var(--m);font-size:13px;border-top:1px solid #ffffff12}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--k);color:#1a0010;font-weight:700;padding:12px 22px;border-radius:30px;transition:.4s;z-index:90;font-size:14px}.toast.on{transform:translateX(-50%)}
+@media(max-width:800px){.am,.tkb{grid-template-columns:1fr}.sd{position:static}nav a:not(.tk){display:none}.cd div{min-width:62px}.cd b{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 .ch,.hero p.sb,.cd{opacity:1;transform:none}}
+</style></head><body>
+<div id="pg"></div>
+<nav><b>IVOIRE<em>BEATS</em></b><div><a href="#lineup">Line-up</a><a href="#film">Aftermovie</a><a class="tk" href="#billets">Billets</a></div></nav>
+<header class="hero"><video id="hv" muted loop playsinline autoplay preload="auto" poster="video/festival-hero.jpg"><source src="video/festival-hero.webm" type="video/webm"><source src="video/festival-hero.mp4" type="video/mp4"></video>
+<p class="dt">18 · 19 · 20 DÉCEMBRE 2026 — GRAND-BASSAM</p>
+<h1><span class="ln a" data-s="IVOIRE"></span><span class="ln b" data-s="BEATS"></span></h1>
+<p class="sb">3 jours, 3 scènes, 24 artistes. Afrobeats, coupé-décalé, électro et live band, les pieds dans le sable.</p>
+<div class="cd" id="cd"><div><b>--</b><small>JOURS</small></div><div><b>--</b><small>HEURES</small></div><div><b>--</b><small>MIN</small></div><div><b>--</b><small>SEC</small></div></div>
+<div><a class="btn b1" href="#billets">Prendre mon billet</a><a class="btn b2" href="#film">Voir l'aftermovie</a></div>
+<button class="vc" id="vc" aria-label="Mettre la vidéo en pause">⏸</button></header>
+<div class="mq"><div id="mq"></div></div>
+<section id="lineup"><h2 class="rv">Le <em>line-up</em></h2><p class="sub rv">Choisissez un jour pour découvrir les artistes et leurs horaires.</p>
+<div class="tabs rv" id="tb"></div><div class="lu" id="lu"></div></section>
+<section id="film"><div class="am"><div class="vb rv" id="vb"><video id="av" playsinline preload="none" poster="video/festival-aftermovie.jpg"><source src="video/festival-aftermovie.webm" type="video/webm"><source src="video/festival-aftermovie.mp4" type="video/mp4"></video><button class="pl" id="pl" aria-label="Lire l'aftermovie">▶</button></div>
+<div class="rv"><h2>Revivez <em>l'édition</em> précédente</h2><p class="sub">12 secondes pour sentir la plage, les lumières et la foule.</p>
+<ul><li><i>🌴</i>Plage privée à 40 min d'Abidjan</li><li><i>🚌</i>Navettes depuis Abidjan à chaque soirée</li><li><i>🍹</i>Village gourmand et bars sur la plage</li><li><i>🔒</i>Sécurité et secours sur site</li></ul></div></div></section>
+<section><div class="st rv"><div><b data-n="24">0</b>artistes</div><div><b data-n="3">0</b>scènes</div><div><b data-n="15000">0</b>festivaliers attendus</div><div><b data-n="72">0</b>heures de musique</div></div></section>
+<section id="billets"><h2 class="rv">La <em>billetterie</em></h2><p class="sub rv">Choisissez vos pass, le total se calcule et votre commande part par WhatsApp.</p>
+<div class="tkb"><div class="ps rv" id="ps"></div>
+<aside class="sd rv"><h3>Ma commande</h3><label class="l">Nom complet<input class="f" id="nm" maxlength="60" placeholder="Votre nom"></label>
+<div class="tot" id="tot"><span id="nb">0 billet</span><b id="tt">0 FCFA</b></div><button class="btn b1" id="go">Commander par WhatsApp</button></aside></div></section>
+<footer>© 2026 Ivoire Beats — site de démonstration réalisé par Junior Gnezale · Grand-Bassam, Côte d'Ivoire</footer>
+<div class="toast" id="ts"></div>
+<script>
+const $=id=>document.getElementById(id),fine=matchMedia('(pointer:fine)').matches,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('.hero h1 .ln').forEach((l,k)=>{let n=0;l.innerHTML=[...l.dataset.s].map(c=>`<span class="ch" style="--i:${k*6+n++}">${c}</span>`).join('')});
+// vidéo d'accueil : pause hors écran / mouvement réduit
+const hv=$('hv'),vc=$('vc');
+if(rm){hv.removeAttribute('autoplay');hv.pause()}
+vc.onclick=()=>{if(hv.paused){hv.play();vc.textContent='⏸'}else{hv.pause();vc.textContent='▶'}vc.dataset.u=1};
+new IntersectionObserver(es=>es.forEach(e=>{if(vc.dataset.u||rm)return;e.isIntersecting?hv.play().catch(()=>{}):hv.pause()}),{threshold:.1}).observe(hv);
+// aftermovie
+const av=$('av'),vb=$('vb');
+$('pl').onclick=()=>{vb.classList.add('go');av.controls=true;av.play().catch(()=>{})};av.onended=()=>{vb.classList.remove('go');av.controls=false;av.load()};
+// compte à rebours
+const T=new Date('2026-12-18T18:00:00').getTime();
+function cd(){let d=Math.max(0,T-Date.now());const v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60];document.querySelectorAll('#cd b').forEach((b,i)=>b.textContent=String(v[i]).padStart(2,'0'))}cd();setInterval(cd,1000);
+$('mq').innerHTML=('<span>AFROBEATS</span><span>✦</span><span>COUPÉ-DÉCALÉ</span><span>✦</span><span>ÉLECTRO</span><span>✦</span><span>LIVE BAND</span><span>✦</span><span>AMAPIANO</span><span>✦</span>').repeat(8);
+// line-up
+const D={'Vendredi 18':[['DJ Kora','Afro-house','21:30','linear-gradient(160deg,#ff4f9a,#4a1a8a)'],['Maya Nuit','Afrobeats','20:30','linear-gradient(160deg,#35e0ff,#1a2a8a)'],['Zébré Sound','Coupé-décalé','19:30','linear-gradient(160deg,#ffd24a,#c2336a)'],['Les Tambours de l\'Aube','Live band','18:30','linear-gradient(160deg,#7b5cff,#12061f)']],
+'Samedi 19':[['Awa Soleil','Afro-soul','22:00','linear-gradient(160deg,#ffd24a,#ff4f9a)'],['Kofi Wave','Amapiano','21:00','linear-gradient(160deg,#35e0ff,#7b5cff)'],['Bassam All Stars','Live band','20:00','linear-gradient(160deg,#ff7a2b,#8a1a63)'],['Nana Pulse','Électro','19:00','linear-gradient(160deg,#b23dff,#12061f)']],
+'Dimanche 20':[['Orchestre Sankofa','Finale live','21:30','linear-gradient(160deg,#ff4f9a,#ffd24a)'],['Yao Flame','Coupé-décalé','20:30','linear-gradient(160deg,#ff7a2b,#4a1a8a)'],['Léa Vibes','Afrobeats','19:30','linear-gradient(160deg,#35e0ff,#ff4f9a)'],['DJ Lagune','Sunset set','18:00','linear-gradient(160deg,#ffd24a,#1a2a8a)']]};
+let day='Vendredi 18';const tb=$('tb'),lu=$('lu');
+tb.innerHTML=Object.keys(D).map(d=>`<button data-d="${d}" class="${d==day?'on':''}">${d}</button>`).join('');
+function draw(){lu.innerHTML=D[day].map((a,i)=>`<article class="ar" data-h="0${i+1}" style="--i:${i};background:${a[3]}"><div class="eq"><i></i><i></i><i></i><i></i></div><small>${a[1].toUpperCase()}</small><h3>${a[0]}</h3><div class="hr">${a[2]}</div></article>`).join('');
+if(fine)lu.querySelectorAll('.ar').forEach(k=>{k.addEventListener('mousemove',e=>{const b=k.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;k.style.transform=`perspective(800px) rotateY(${x*12}deg) rotateX(${-y*12}deg) scale(1.03)`});k.addEventListener('mouseleave',()=>k.style.transform='')})}draw();
+tb.onclick=e=>{const b=e.target.closest('button');if(!b)return;day=b.dataset.d;tb.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b));draw()};
+// billetterie
+const PS=[['🎟️','Pass 1 jour','Accès à la journée de votre choix',15000],['🎫','Pass 3 jours','Les trois soirées, entrée prioritaire',35000],['👑','Pass VIP 3 jours','Espace VIP, bar privé, navette incluse',90000]],Q=[0,0,0];
+const fmt=n=>Math.round(n).toLocaleString('fr-FR')+' FCFA';let shown=0;
+function dr(){$('ps').innerHTML=PS.map((p,i)=>`<div class="p ${Q[i]?'on':''}"><i style="font-style:normal;font-size:34px">${p[0]}</i><div><b>${p[1]}</b><small>${p[2]}</small></div><span class="pr">${fmt(p[3])}</span><div class="q"><button data-i="${i}" data-d="-1" aria-label="Moins">−</button><span>${Q[i]}</span><button data-i="${i}" data-d="1" aria-label="Plus">+</button></div></div>`).join('')}dr();
+function calc(){const t=PS.reduce((s,p,i)=>s+p[3]*Q[i],0),n=Q.reduce((a,b)=>a+b,0),f=shown,t1=performance.now();$('nb').textContent=n+' billet'+(n>1?'s':'');
+(function c(x){const k=Math.min(1,(x-t1)/450);shown=f+(t-f)*(1-Math.pow(1-k,3));$('tt').textContent=fmt(shown);if(k<1)requestAnimationFrame(c)})(t1);$('tot').classList.remove('bump');void $('tot').offsetWidth;$('tot').classList.add('bump');return t}
+$('ps').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;Q[i]=Math.max(0,Math.min(10,Q[i]+ +b.dataset.d));dr();calc()};
+function toast(m){$('ts').textContent=m;$('ts').classList.add('on');setTimeout(()=>$('ts').classList.remove('on'),2400)}
+$('go').onclick=()=>{if(!Q.some(Boolean))return toast('Ajoutez au moins un billet');const l=PS.map((p,i)=>Q[i]?`${Q[i]} × ${p[1]}`:'').filter(Boolean).join(', ');
+window.open('https://wa.me/2250758167537?text='+encodeURIComponent(`Bonjour Ivoire Beats, je souhaite réserver.\nNom : ${$('nm').value||'—'}\nBillets : ${l}\nTotal : ${fmt(calc())}`),'_blank','noopener')};
+addEventListener('scroll',()=>$('pg').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%',{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('on');t.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;let i=0,s=Math.ceil(n/60);const id=setInterval(()=>{i=Math.min(n,i+s);b.textContent=i.toLocaleString('fr-FR');if(i>=n)clearInterval(id)},20)});io.unobserve(t)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*.1+'s';io.observe(el)});
+</script></body></html>

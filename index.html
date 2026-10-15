@@ -87,7 +87,7 @@ footer{text-align:center;padding:30px;color:var(--mu);font-size:13px;border-top:
 <section id="about"><div class="stats reveal">
  <div class="stat"><b data-n="12">0</b>jours de mission terrain</div>
  <div class="stat"><b data-n="4">0</b>villes visitées</div>
- <div class="stat"><b data-n="15">0</b>projets terminés</div>
+ <div class="stat"><b data-n="16">0</b>projets terminés</div>
  <div class="stat"><b data-n="2">0</b>permis de conduire (A, B)</div></div></section>
 <section id="skills"><h2 class="reveal">Mes <em>compétences</em></h2><div class="grid">
  <div class="card reveal"><i>🛠️</i><h3>Support &amp; maintenance</h3><p>Installation et suivi d'équipements, assistance technique sur site, reporting de mission.</p></div>
@@ -154,6 +154,7 @@ const PJ=[
 {c:'web',t:'Ivoire Académie — Centre de formation informatique',d:'Site de centre de formation à Abidjan : catalogue filtrable par domaine, total et durée calculés au choix, paiement en 1 ou 2 versements, FAQ et inscription envoyée par WhatsApp.',tags:['HTML','CSS','JavaScript','Formulaire','WhatsApp'],img:['academie'],demo:'academie/'},
 {c:'web',t:'Éclat Auto — Garage et lavage automobile',d:'Garage animé : compteur de vitesse piloté par le défilement, voiture qui roule, lignes de vitesse en canvas, méthode épinglée avec roue qui tourne, curseur personnalisé, devis instantané en FCFA et rendez-vous par WhatsApp.',tags:['Motion design','Canvas','Défilement','Devis','WhatsApp'],img:['garage'],demo:'garage/'},
 {c:'web',t:'Kora Fit — Salle de sport',d:'Salle de sport animée : titre dont les lettres suivent la souris, particules et ondes au clic, rythme cardiaque en direct, disciplines en défilement horizontal, planning, calculateur d\'IMC et inscription par WhatsApp.',tags:['Motion design','Canvas','Défilement','Calculateur','WhatsApp'],img:['sport'],demo:'sport/'},
+{c:'web',t:'Ivoire Beats — Festival de musique avec vidéos',d:'Festival de 3 jours à Grand-Bassam : vidéo d\'ambiance en plein écran, aftermovie, compte à rebours en direct, line-up par jour avec cartes 3D, billetterie avec total en FCFA et commande par WhatsApp.',tags:['Vidéo','Motion design','Compte à rebours','Billetterie','WhatsApp'],img:['festival'],demo:'festival/'},
 {c:'py',t:'Gestion de parc informatique',d:'Application Python avec base de données : suivi des équipements, tickets d\'assistance par priorité et statut, export CSV. La démo en ligne est une version JavaScript.',tags:['Python','Flask','SQLite'],img:['parc-1','parc-2','parc-3'],demo:'parc/',code:'https://github.com/kopp17/gestion-parc-it'}];
 const pj=document.getElementById('pj');
 pj.innerHTML=PJ.map((p,i)=>`<article class="pc reveal" data-c="${p.c}"><div class="im" data-i="${i}"><img src="img/${p.img[0]}.jpg" alt="${p.t}" loading="lazy"><span>🔍 ${p.img.length} captures</span></div><div class="bd"><h3>${p.t}</h3><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div>${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">▶ Démo en direct</a>`:''}${p.code?`<a href="${p.code}" target="_blank" rel="noopener">&lt;/&gt; Code source</a>`:''}</div></article>`).join('');
