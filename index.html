@@ -87,7 +87,7 @@ footer{text-align:center;padding:30px;color:var(--mu);font-size:13px;border-top:
 <section id="about"><div class="stats reveal">
  <div class="stat"><b data-n="12">0</b>jours de mission terrain</div>
  <div class="stat"><b data-n="4">0</b>villes visitées</div>
- <div class="stat"><b data-n="13">0</b>projets terminés</div>
+ <div class="stat"><b data-n="15">0</b>projets terminés</div>
  <div class="stat"><b data-n="2">0</b>permis de conduire (A, B)</div></div></section>
 <section id="skills"><h2 class="reveal">Mes <em>compétences</em></h2><div class="grid">
  <div class="card reveal"><i>🛠️</i><h3>Support &amp; maintenance</h3><p>Installation et suivi d'équipements, assistance technique sur site, reporting de mission.</p></div>
@@ -152,6 +152,8 @@ const PJ=[
 {c:'web',t:'Maison Adjoua — Salon de coiffure et beauté',d:'Salon à Cocody : une tresse qui se tisse à l\'écran et suit la souris, choix des prestations avec total en FCFA et durée, créneaux calculés selon les horaires du salon, réservation par WhatsApp ou e-mail.',tags:['Animation SVG','JavaScript','Réservation','WhatsApp'],img:['salon-1','salon-2','salon-3'],demo:'salon/'},
 {c:'web',t:'Ébène — Chocolatier, site premium en motion design',d:'Preloader en pourcentage avec cabosse qui se remplit, page qui s\'ouvre en iris, histoire du cacao épinglée au défilement avec fond qui change de couleur, tablettes en 3D, panier animé et commande par WhatsApp.',tags:['Motion design','Preloader','Défilement','3D','WhatsApp'],img:['chocolat-1','chocolat-2','chocolat-3'],demo:'chocolat/'},
 {c:'web',t:'Ivoire Académie — Centre de formation informatique',d:'Site de centre de formation à Abidjan : catalogue filtrable par domaine, total et durée calculés au choix, paiement en 1 ou 2 versements, FAQ et inscription envoyée par WhatsApp.',tags:['HTML','CSS','JavaScript','Formulaire','WhatsApp'],img:['academie'],demo:'academie/'},
+{c:'web',t:'Éclat Auto — Garage et lavage automobile',d:'Site de garage à Abidjan : services à cocher, prix selon le type de véhicule, devis instantané en FCFA, choix de la date et prise de rendez-vous par WhatsApp.',tags:['HTML','CSS','JavaScript','Devis','WhatsApp'],img:['garage'],demo:'garage/'},
+{c:'web',t:'Kora Fit — Salle de sport',d:'Site de salle de sport : planning des cours par jour, calculateur d\'IMC avec jauge, formules mensuelles ou annuelles (−20 %) et inscription par WhatsApp.',tags:['JavaScript','Planning','Calculateur','WhatsApp'],img:['sport'],demo:'sport/'},
 {c:'py',t:'Gestion de parc informatique',d:'Application Python avec base de données : suivi des équipements, tickets d\'assistance par priorité et statut, export CSV. La démo en ligne est une version JavaScript.',tags:['Python','Flask','SQLite'],img:['parc-1','parc-2','parc-3'],demo:'parc/',code:'https://github.com/kopp17/gestion-parc-it'}];
 const pj=document.getElementById('pj');
 pj.innerHTML=PJ.map((p,i)=>`<article class="pc reveal" data-c="${p.c}"><div class="im" data-i="${i}"><img src="img/${p.img[0]}.jpg" alt="${p.t}" loading="lazy"><span>🔍 ${p.img.length} captures</span></div><div class="bd"><h3>${p.t}</h3><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div>${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener">▶ Démo en direct</a>`:''}${p.code?`<a href="${p.code}" target="_blank" rel="noopener">&lt;/&gt; Code source</a>`:''}</div></article>`).join('');
